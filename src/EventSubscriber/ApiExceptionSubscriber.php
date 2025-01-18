@@ -11,7 +11,7 @@ use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\KernelEvents;
 
-class ApiExceptionSubscriber implements EventSubscriberInterface
+readonly class ApiExceptionSubscriber implements EventSubscriberInterface
 {
     public static function getSubscribedEvents(): array
     {
@@ -23,12 +23,12 @@ class ApiExceptionSubscriber implements EventSubscriberInterface
     public function onKernelException(ExceptionEvent $event): void
     {
         $exception = $event->getThrowable();
-        
+
         if ($exception instanceof BadRequestHttpException) {
             $response = new JsonResponse([
-                'error' => $exception->getMessage()
+                'error' => $exception->getMessage(),
             ], Response::HTTP_BAD_REQUEST);
-            
+
             $event->setResponse($response);
         }
     }

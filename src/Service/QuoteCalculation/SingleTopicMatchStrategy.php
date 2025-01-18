@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Service\QuoteCalculation;
 
-class SingleTopicMatchStrategy implements QuoteCalculationStrategyInterface
+readonly class SingleTopicMatchStrategy implements QuoteCalculationStrategyInterface
 {
-    private const HIGHEST_TOPIC_RATE = 0.20;
-    private const SECOND_HIGHEST_TOPIC_RATE = 0.25;
-    private const THIRD_HIGHEST_TOPIC_RATE = 0.30;
+    private const float HIGHEST_TOPIC_RATE = 0.20;
+    private const float SECOND_HIGHEST_TOPIC_RATE = 0.25;
+    private const float THIRD_HIGHEST_TOPIC_RATE = 0.30;
 
     public function supports(int $matchCount): bool
     {

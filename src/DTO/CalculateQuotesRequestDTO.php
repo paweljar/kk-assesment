@@ -6,23 +6,30 @@ namespace App\DTO;
 
 readonly class CalculateQuotesRequestDTO
 {
-    private array $topics;
-
-    private function __construct(array $topics)
-    {
-        $this->topics = $topics;
+    /**
+     * @param array<string, int> $topics Topic scores indexed by topic name
+     */
+    private function __construct(
+        private array $topics,
+    ) {
     }
 
     public static function fromArray(array $data): self
     {
-        return new self($data['topics']);
+        return new self($data);
     }
 
+    /**
+     * @return array<string, int>
+     */
     public function getTopics(): array
     {
         return $this->topics;
     }
 
+    /**
+     * @return array<string, int>
+     */
     public function getTop3Topics(): array
     {
         $topics = $this->topics;

@@ -1,16 +1,18 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Controller;
 
 use App\Request\CalculateQuotesRequest;
-use App\Service\QuoteCalculator;
+use App\Service\QuoteCalculatorService;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
 readonly class BundleQuoteController
 {
     public function __construct(
-        private QuoteCalculator $quoteCalculator,
+        private QuoteCalculatorService $quoteCalculator,
     ) {
     }
 
@@ -18,7 +20,7 @@ readonly class BundleQuoteController
     public function calculateQuotes(CalculateQuotesRequest $request): JsonResponse
     {
         $quotes = $this->quoteCalculator->calculateQuotes($request->toDTO());
-        
+
         return new JsonResponse(['quotes' => $quotes]);
     }
 }

@@ -25,10 +25,10 @@ destroy: stop
 	${COMPOSE} rm --force --stop -v
 
 test-unit:
-	${COMPOSE} run --rm php php bin/phpunit --testsuite unit
+	${COMPOSE} run --rm php php vendor/bin/phpunit --testsuite unit
 
 test-e2e:
-	${COMPOSE} run --rm php php bin/phpunit --testsuite e2e
+	${COMPOSE} run --rm php php vendor/bin/phpunit --testsuite e2e
 
 bash:
 	${COMPOSE} run php bash

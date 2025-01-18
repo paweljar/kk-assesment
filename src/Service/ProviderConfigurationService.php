@@ -6,7 +6,7 @@ namespace App\Service;
 
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
-class ProviderConfigurationService
+readonly class ProviderConfigurationService
 {
     private array $providerTopics;
 
@@ -19,6 +19,10 @@ class ProviderConfigurationService
 
     public function getProviderTopics(string $provider): array
     {
+        if (!isset($this->providerTopics[$provider])) {
+            throw new \InvalidArgumentException(sprintf('Provider "%s" not found', $provider));
+        }
+
         return explode('+', $this->providerTopics[$provider]);
     }
 

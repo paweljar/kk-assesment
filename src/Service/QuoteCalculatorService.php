@@ -7,7 +7,7 @@ namespace App\Service;
 use App\DTO\CalculateQuotesRequestDTO;
 use App\Service\QuoteCalculation\QuoteCalculationStrategyResolver;
 
-readonly class QuoteCalculator
+readonly class QuoteCalculatorService
 {
     public function __construct(
         private ProviderConfigurationService $providerConfig,
@@ -39,6 +39,6 @@ readonly class QuoteCalculator
         $matchCount = count($matchingTopics);
         $strategy = $this->strategyResolver->getStrategy($matchCount);
 
-        return $strategy?->calculate($matchingTopics, $top3Topics, $topicRanks) ?? 0;
+        return $strategy?->calculate($matchingTopics, $top3Topics, $topicRanks) ?? 0.0;
     }
 }

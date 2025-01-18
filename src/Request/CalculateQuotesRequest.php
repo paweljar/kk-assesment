@@ -7,7 +7,7 @@ namespace App\Request;
 use App\DTO\CalculateQuotesRequestDTO;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class CalculateQuotesRequest
+readonly class CalculateQuotesRequest
 {
     #[Assert\NotNull]
     #[Assert\Type('array')]
@@ -38,6 +38,6 @@ class CalculateQuotesRequest
 
     public function toDTO(): CalculateQuotesRequestDTO
     {
-        return CalculateQuotesRequestDTO::fromArray(['topics' => $this->topics]);
+        return CalculateQuotesRequestDTO::fromArray($this->topics);
     }
 }

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Service\QuoteCalculation;
 
-class TwoTopicsMatchStrategy implements QuoteCalculationStrategyInterface
+readonly class TwoTopicsMatchStrategy implements QuoteCalculationStrategyInterface
 {
-    private const TWO_TOPICS_RATE = 0.10;
+    private const float TWO_TOPICS_RATE = 0.10;
 
     public function supports(int $matchCount): bool
     {

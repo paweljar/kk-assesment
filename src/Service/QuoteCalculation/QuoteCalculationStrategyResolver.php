@@ -4,16 +4,11 @@ declare(strict_types=1);
 
 namespace App\Service\QuoteCalculation;
 
-class QuoteCalculationStrategyResolver
+readonly class QuoteCalculationStrategyResolver
 {
-    /**
-     * @var QuoteCalculationStrategyInterface[]
-     */
-    private array $strategies;
-
-    public function __construct(iterable $strategies)
+    /** @param iterable<QuoteCalculationStrategyInterface> $strategies */
+    public function __construct(private iterable $strategies)
     {
-        $this->strategies = is_array($strategies) ? $strategies : iterator_to_array($strategies);
     }
 
     public function getStrategy(int $matchCount): ?QuoteCalculationStrategyInterface
